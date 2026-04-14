@@ -12,11 +12,15 @@ app.use(cors());
 
 // MongoDB Connection
 mongoose
-  .connect("mongodb://localhost:27017/mydatabase")
-  .then(() => console.log("MongoDB connected"))
-  .catch((err) => console.log(err));
+  .connect(process.env.MONGO_URI, {
+    serverSelectionTimeoutMS: 5000,
+  })
+  .then(() => console.log("MongoDB connected ✅"))
+  .catch((err) => {
+    console.error("MongoDB error ❌", err);
+  });
 
-// Routes (IMPORTANT: correct file name)
+// Routes
 const todoRoutes = require("./routes/todoRoutes");
 app.use("/api", todoRoutes);
 
