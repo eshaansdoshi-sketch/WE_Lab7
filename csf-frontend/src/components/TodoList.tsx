@@ -13,7 +13,7 @@ const TodoList = ({ todos }: TodoListProps) => {
   // Define types for id (string) and completed (boolean)
   const handleToggle = async (id: string, completed: boolean) => {
     try {
-      await axios.put(`http://localhost:5000/api/todos/${id}`, {
+      await axios.put(`/api/todos/${id}`, {
         completed: !completed,
       });
       router.refresh(); // Tells the Server Component (page.tsx) to re-fetch data
@@ -24,7 +24,7 @@ const TodoList = ({ todos }: TodoListProps) => {
 
   const handleDelete = async (id: string) => {
     try {
-      await axios.delete(`http://localhost:5000/api/todos/${id}`);
+      await axios.delete(`/api/todos/${id}`);
       router.refresh();
     } catch (error) {
       console.error("Error deleting task:", error);

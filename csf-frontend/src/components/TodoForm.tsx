@@ -12,7 +12,7 @@ const TodoForm = () => {
     if (!task.trim()) return;
 
     try {
-      await axios.post("http://localhost:5000/api/todos", { task });
+      await axios.post("/api/todos", { task });
       setTask("");
       router.refresh(); // Refresh the list without needing a prop
     } catch (error) {

@@ -30,13 +30,12 @@ router.put("/todos/:id", async (req, res) => {
     const updatedTodo = await Todo.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
     });
-    console.log(`${req.params.id}`);
+    if (!updatedTodo) {
+      return res.status(404).json({ error: "To-Do not found" });
+    }
     res.json(updatedTodo);
   } catch (error) {
-    // res.status(500).json({ error: error.message });
-    console.log(error);
-  } finally {
-    res.send("Your request failed");
+    res.status(500).json({ error: error.message });
   }
 });
 

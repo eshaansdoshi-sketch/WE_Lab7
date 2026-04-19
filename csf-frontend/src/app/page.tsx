@@ -4,8 +4,8 @@ import { Todo } from "@/types/todo";
 
 // This is a Server Component by default
 async function getTodos(): Promise<Todo[]> {
-  // Use 'no-store' to ensure we always get fresh data
-  const res = await fetch("http://localhost:5000/api/todos", {
+  // Fetch through the Next.js rewrite so frontend stays on one origin (port 3000).
+  const res = await fetch("http://localhost:3000/api/todos", {
     cache: "no-store",
   });
   if (!res.ok) throw new Error("Failed to fetch todos");
